@@ -70,7 +70,7 @@ jobs:
                     {
                         "ignoreComments":true
                     }
-                  ]
+                  ],
                   "max-len": [
                     "error", 
                     { 
@@ -81,7 +81,6 @@ jobs:
                       "ignoreRegExpLiterals": true  
                     }
                   ]
-
               }
             }' > eslintrc.json
             
