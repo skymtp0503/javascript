@@ -71,6 +71,17 @@ jobs:
                         "ignoreComments":true
                     }
                   ]
+                  "max-len": [
+                    "error", 
+                    { 
+                      "ignoreComments": true,
+                      "ignoreUrls": true,
+                      "ignoreStrings": true,
+                      "ignoreTemplateLiterals": true,
+                      "ignoreRegExpLiterals": true  
+                    }
+                  ]
+
               }
             }' > eslintrc.json
             
