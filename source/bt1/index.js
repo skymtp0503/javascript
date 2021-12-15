@@ -19,8 +19,8 @@ const regexPassword =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 const checkUsername = () => {
   let valid = false;
-  const min = 3,
-    max = 25;
+  const min = 3;
+  const max = 25;
   const fullname = fullnameEl.value.trim();
   if (!isRequired(fullname)) {
     showError(fullnameEl, 'Full name cannot be blank.');
@@ -29,7 +29,7 @@ const checkUsername = () => {
   } else if (!isBetween(fullname.length, min, max)) {
     showError(fullnameEl, 'Full name must be between 3 and 25 chacracter');
   } else {
-    let fullnameFormat = fullname
+    const fullnameFormat = fullname
       .toLowerCase()
       .split(' ')
       .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
@@ -68,21 +68,21 @@ const checkPhone = () => {
 };
 const checkBirth = () => {
   let valid = false;
-  let today = new Date();
-  let dd = today.getDate();
-  let mm = today.getMonth() + 1;
-  let yyyy = today.getFullYear();
+  const today = new Date();
+  const dd = today.getDate();
+  const mm = today.getMonth() + 1;
+  const yyyy = today.getFullYear();
   if (!isRequired(birthdayEl.value)) {
     showError(birthdayEl, 'Birthday cannot be blank');
   } else {
-    let birthdaySplit = birthdayEl.value.split('-');
-    let dateVal = parseInt(birthdaySplit[2]);
-    let mmVal = parseInt(birthdaySplit[1]);
-    let yyyyVal = parseInt(birthdaySplit[0]);
+    const birthdaySplit = birthdayEl.value.split('-');
+    const dateVal = parseInt(birthdaySplit[2]);
+    const mmVal = parseInt(birthdaySplit[1]);
+    const yyyyVal = parseInt(birthdaySplit[0]);
     if ((dateVal >= dd && mmVal >= mm && yyyyVal >= yyyy) || yyyyVal > yyyy) {
       showError(
         birthdayEl,
-        `Your date of birth must be less than the current date: ${today}`
+        `Your date of birth must be less than the current date: ${today}`,
       );
       valid = false;
     } else {
@@ -100,7 +100,7 @@ const checkPassword = () => {
   } else if (!checkRegex(regexPassword, password)) {
     showError(
       passwordEl,
-      'Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)'
+      'Password must has at least 8 characters: 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)',
     );
   } else {
     showSuccess(passwordEl);
@@ -130,16 +130,16 @@ const isRequired = (value) => (value === '' ? false : true);
 const isBetween = (length, min, max) =>
   length < min || length > max ? false : true;
 const showError = (input, message) => {
-  let parent = input.parentElement;
-  let errorEl = parent.querySelector('.form-error');
-  let inputEl = parent.querySelector('input');
+  const parent = input.parentElement;
+  const errorEl = parent.querySelector('.form-error');
+  const inputEl = parent.querySelector('input');
   inputEl.classList.add('invalid');
   errorEl.innerText = message;
 };
 const showSuccess = (input) => {
-  let parent = input.parentElement;
-  let errorEl = parent.querySelector('.form-error');
-  let inputEl = parent.querySelector('input');
+  const parent = input.parentElement;
+  const errorEl = parent.querySelector('.form-error');
+  const inputEl = parent.querySelector('input');
   inputEl.classList.remove('invalid');
   errorEl.innerText = '';
 };
@@ -148,8 +148,6 @@ const avatar = document.querySelector('#profile-pic');
 addImg.onchange = (e) => {
   const files = e.target.files;
   const file = files[0];
-  const fileType = file['type'];
-  const imageTypes = ['image/gif', 'image/jpeg', 'image/png'];
   const fileReader = new FileReader();
   console.log(fileReader);
   fileReader.readAsDataURL(file);
