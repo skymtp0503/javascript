@@ -162,10 +162,10 @@ phoneEl.addEventListener('blur', checkPhone);
 birthdayEl.addEventListener('blur', checkBirth);
 passwordEl.addEventListener('blur', checkPassword);
 confirmPasswordEl.addEventListener('blur', checkConfirmPassword);
-form.addEventListener('submit', function (e) {
+form.addEventListener('submit', function(e) {
   add(e);
 });
-form.addEventListener('reset', function (e) {
+form.addEventListener('reset', function(e) {
   reset();
 });
 const add = (e) => {
