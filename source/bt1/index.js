@@ -100,7 +100,7 @@ const checkPassword = () => {
   } else if (!checkRegex(regexPassword, password)) {
     showError(
       passwordEl,
-      'Password must has at least 8 characters: 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)',
+      'Password must has at least 8 characters: 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character',
     );
   } else {
     showSuccess(passwordEl);
