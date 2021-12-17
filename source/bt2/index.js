@@ -4,7 +4,7 @@ listItem.onchange = () => {
 };
 const higthLight = (value) => {
   const listItem = document.getElementsByTagName('li');
-  if (value >= 0 || value <= 6) {
+  if (value > 0 || value <= 6) {
     for (i = 0; i < listItem.length; i++) {
       if (value - 1 == i) listItem[i].style.background = 'yellow';
       else listItem[i].style.background = 'none';
