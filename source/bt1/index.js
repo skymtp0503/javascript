@@ -30,7 +30,7 @@ const checkUsername = (element) => {
       .split(' ')
       .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
       .join(' ');
-      element.value = fullnameFormat;
+    element.value = fullnameFormat;
     valid = true;
     showSuccess(element);
   }
@@ -235,3 +235,4 @@ const showResult = () => {
   birthdayResult.innerText = birthday;
   avartarReslt.src = avartar;
 };
+
