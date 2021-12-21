@@ -81,7 +81,7 @@ const checkBirth = () => {
     if ((dateVal >= dd && mmVal >= mm && yyyyVal >= yyyy) || yyyyVal > yyyy) {
       showError(
         birthdayEl,
-        `Your date of birth must be less than the current date: ${today}`
+        `Your date of birth must be less than the current date: ${today}`,
       );
       valid = false;
     } else {
@@ -101,7 +101,7 @@ const checkPassword = () => {
   } else if (!checkRegex(regexPassword, password)) {
     showError(
       passwordEl,
-      'Password must has at least 8 characters: 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character'
+      'Password must has at least 8 characters: 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character',
     );
   } else {
     showSuccess(passwordEl);
@@ -164,10 +164,10 @@ phoneEl.addEventListener('blur', checkPhone);
 birthdayEl.addEventListener('blur', checkBirth);
 passwordEl.addEventListener('blur', checkPassword);
 confirmPasswordEl.addEventListener('blur', checkConfirmPassword);
-form.addEventListener('submit', function (e) {
+form.addEventListener('submit', function(e) {
   add(e);
 });
-form.addEventListener('reset', function (e) {
+form.addEventListener('reset', function(e) {
   reset();
 });
 const add = (e) => {
@@ -233,3 +233,4 @@ const showResult = () => {
   birthdayResult.innerText = birthday;
   avartarReslt.src = avartar;
 };
+
