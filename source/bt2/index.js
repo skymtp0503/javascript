@@ -7,6 +7,7 @@ const higthLight = (value) => {
   for (i = 0; i < listItem.length; i++) {
     if (value == 'reset') {
       listItem[i].style.background = 'none';
+      continue;
     } else if (value > 0 || value <= 6) {
       if (value - 1 == i) listItem[i].style.background = 'yellow';
       else listItem[i].style.background = 'none';
