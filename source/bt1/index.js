@@ -11,14 +11,10 @@ const birthdayError = document.querySelector('#birthday-error');
 const passwordError = document.querySelector('#password-error');
 const confirmError = document.querySelector('#confirm-error');
 const form = document.querySelector('#form');
-const regexFullName =
-  /[\[\]\:\'\"\:\{\}\`\;\|\<\>\.\?\,\!\@\#\$\%\^\&\*\(\)\/\\\~\-\_\+\=\d]+/g;
-const regexEmail = /^([\w]*[\w\.]*(?!\.)@gmail.com)/;
-const regexPhone = /^[0][0-9]{2}[0-9]{3}[0-9]{4}$/;
-const regexPassword =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 const checkUsername = () => {
   let valid = false;
+  const regexFullName =
+    /[\[\]\:\'\"\:\{\}\`\;\|\<\>\.\?\,\!\@\#\$\%\^\&\*\(\)\/\\\~\-\_\+\=\d]+/g;
   const min = 3;
   const max = 25;
   const fullname = fullnameEl.value.trim();
@@ -34,7 +30,7 @@ const checkUsername = () => {
       .split(' ')
       .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
       .join(' ');
-    fullnameEl.value = fullnameFormat;
+    fullnameElement.value = fullnameFormat;
     valid = true;
     showSuccess(fullnameEl);
   }
@@ -42,8 +38,10 @@ const checkUsername = () => {
 };
 const checkEmail = () => {
   let valid = false;
+  const regexMail =
+    /^([a-z]|[A-Z]|[0-9])+((\.?)([a-z]|[A-Z]|[0-9])+)*\@([a-z]|[A-Z]|[0-9])+(\.([a-z]|[A-Z]|[0-9])+)*$/g;
   const email = emailEl.value.trim();
-  if (!checkRegex(regexEmail, email)) {
+  if (!checkRegex(regexMail, email)) {
     showError(emailEl, 'Email cannot be blank.');
   } else if (!isEmailValid(email)) {
     showError(emailEl, 'Email is not valid.');
@@ -55,6 +53,7 @@ const checkEmail = () => {
 };
 const checkPhone = () => {
   let valid = false;
+  const regexPhone = /^[0][0-9]{2}[0-9]{3}[0-9]{4}$/;
   const phone = phoneEl.value.trim();
   if (!isRequired(phone)) {
     showError(phoneEl, 'Phone cannot be blank.');
@@ -94,6 +93,8 @@ const checkBirth = () => {
 };
 const checkPassword = () => {
   let valid = false;
+  const regexPassword =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
   const password = passwordEl.value.trim();
   if (!isRequired(password)) {
     showError(passwordEl, 'Password cannot be blank.');
@@ -112,10 +113,7 @@ const checkConfirmPassword = () => {
   let valid = false;
   const confirmPassword = confirmPasswordEl.value.trim();
   const password = passwordEl.value.trim();
-  if (!checkPassword()) {
-    valid = false;
-    return valid;
-  } else if (!isRequired(confirmPassword)) {
+  if (!isRequired(confirmPassword)) {
     showError(confirmPasswordEl, 'Please enter the password again');
   } else if (password !== confirmPassword) {
     showError(confirmPasswordEl, 'The password does not match');
@@ -148,8 +146,12 @@ const avatar = document.querySelector('#profile-pic');
 addImg.onchange = (e) => {
   const files = e.target.files;
   const file = files[0];
+  const fileType = file['type'];
+  const imageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+  if (!imageTypes.includes(fileType)) {
+    return;
+  }
   const fileReader = new FileReader();
-  console.log(fileReader);
   fileReader.readAsDataURL(file);
   fileReader.onload = () => {
     const url = fileReader.result;
@@ -170,15 +172,10 @@ form.addEventListener('reset', function(e) {
 });
 const add = (e) => {
   e.preventDefault();
-  const fullname = document.querySelector('#fullname').value;
-  const email = document.querySelector('#email').value;
-  const phone = document.querySelector('#phone').value;
-  const birthday = document.querySelector('#birthday').value;
-  const avartar = document.querySelector('#profile-pic').getAttribute('src');
   let isValid = false;
   isValid = checkAll();
   if (isValid) {
-    showResult(fullname, email, phone, birthday, avartar);
+    showResult();
   }
 };
 document.onkeyup = (e) => {
@@ -219,7 +216,12 @@ const resetError = () => {
   passwordError.innerText = '';
   confirmError.innerText = '';
 };
-const showResult = (fullname, email, phone, birthday, avartar) => {
+const showResult = () => {
+  const fullname = document.querySelector('#fullname').value;
+  const email = document.querySelector('#email').value;
+  const phone = document.querySelector('#phone').value;
+  const birthday = document.querySelector('#birthday').value;
+  const avartar = document.querySelector('#profile-pic').getAttribute('src');
   const fullnameResult = document.querySelector('#fullnameResult');
   const emailResult = document.querySelector('#emailResult');
   const phoneResult = document.querySelector('#phoneResult');
