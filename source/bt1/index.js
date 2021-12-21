@@ -11,28 +11,28 @@ const birthdayError = document.querySelector('#birthday-error');
 const passwordError = document.querySelector('#password-error');
 const confirmError = document.querySelector('#confirm-error');
 const form = document.querySelector('#form');
-const checkUsername = () => {
+const checkUsername = (element) => {
   let valid = false;
   const regexFullName =
     /[\[\]\:\'\"\:\{\}\`\;\|\<\>\.\?\,\!\@\#\$\%\^\&\*\(\)\/\\\~\-\_\+\=\d]+/g;
   const min = 3;
   const max = 25;
-  const fullname = fullnameEl.value.trim();
+  const fullname = element.value.trim();
   if (!isRequired(fullname)) {
-    showError(fullnameEl, 'Full name cannot be blank.');
+    showError(element, 'Full name cannot be blank.');
   } else if (checkRegex(regexFullName, fullname)) {
-    showError(fullnameEl, 'Full name is not valid');
+    showError(element, 'Full name is not valid');
   } else if (!isBetween(fullname.length, min, max)) {
-    showError(fullnameEl, 'Full name must be between 3 and 25 chacracter');
+    showError(element, 'Full name must be between 3 and 25 chacracter');
   } else {
     const fullnameFormat = fullname
       .toLowerCase()
       .split(' ')
       .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
       .join(' ');
-    fullnameElement.value = fullnameFormat;
+      element.value = fullnameFormat;
     valid = true;
-    showSuccess(fullnameEl);
+    showSuccess(element);
   }
   return valid;
 };
@@ -141,9 +141,9 @@ const showSuccess = (input) => {
   inputEl.classList.remove('invalid');
   errorEl.innerText = '';
 };
-const addImg = document.querySelector('.file-upload');
+const addImage = document.querySelector('.file-upload');
 const avatar = document.querySelector('#profile-pic');
-addImg.onchange = (e) => {
+addImage.onchange = (e) => {
   const files = e.target.files;
   const file = files[0];
   const fileType = file['type'];
@@ -158,7 +158,9 @@ addImg.onchange = (e) => {
     avatar.setAttribute('src', url);
   };
 };
-fullnameEl.addEventListener('blur', checkUsername);
+fullnameEl.onblur = () => {
+  checkUsername(fullnameEl);
+};
 emailEl.addEventListener('blur', checkEmail);
 phoneEl.addEventListener('blur', checkPhone);
 birthdayEl.addEventListener('blur', checkBirth);
@@ -187,14 +189,14 @@ const reset = () => {
   avatar.setAttribute('src', 'avatar.png');
 };
 const checkAll = () => {
-  checkUsername();
+  checkUsername(fullnameEl);
   checkEmail();
   checkPhone();
   checkBirth();
   checkPassword();
   checkConfirmPassword();
   return (
-    checkUsername() &&
+    checkUsername(fullnameEl) &&
     checkEmail() &&
     checkPhone() &&
     checkBirth() &&
