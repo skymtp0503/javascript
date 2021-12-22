@@ -4,16 +4,16 @@ const addRow = () => {
   const email = document.getElementById('email').value;
   if (!checkNull(name) && !checkNull(phone) && !checkNull(email)) {
     const tb = document.getElementById('tbody');
-    let tr = document.createElement('tr');
+    const tr = document.createElement('tr');
     tr.innerHTML =
       '<td><input type="checkbox" value="" /></td>' +
-      '<td ondblclick="fn1(this)"><input class="name" type="text" value="' +
+      '<td ondblclick="enabledInput(this)"><input class="name" type="text" value="' +
       name +
-      '"  onblur="fn(this)" disabled/></td>' +
-      '<td ondblclick="fn1(this)"><input type="text" value="' +
+      '"  onblur="disabledInput(this)" disabled/></td>' +
+      '<td ondblclick="enabledInput(this)"><input type="text" value="' +
       phone +
       '" onblur="fn(this)" disabled/></td>' +
-      '<td ondblclick="fn1(this)"><input type="text" value="' +
+      '<td ondblclick="enabledInput(this)"><input type="text" value="' +
       email +
       '" onblur="fn(this)" disabled/></td>' +
       '<td><input type="button" value="Deleted" onclick="deleted(this)"/></td>';
@@ -27,10 +27,10 @@ const reset = () => {
   document.getElementById('phone').value = '';
   document.getElementById('email').value = '';
 };
-const fn = (element) => {
+const disabledInput = (element) => {
   element.disabled = true;
 };
-const fn1 = (element) => {
+const enabledInput = (element) => {
   element.firstChild.disabled = false;
 };
 const deleted = (element) => {
@@ -45,6 +45,10 @@ const deletedOption = () => {
     }
   }
 };
-
+const checkbox = document.getElementById('checkbox');
+checkbox.onclick = (e) => {
+  disabledInput(e);
+  enabledInput(e);
+};
 document.getElementById('add').addEventListener('click', addRow);
 document.getElementById('deleted').addEventListener('click', deletedOption);
