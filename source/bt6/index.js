@@ -12,10 +12,10 @@ const addRow = () => {
       '"  onblur="disabledInput(this)" disabled/></td>' +
       '<td ondblclick="enabledInput(this)"><input type="text" value="' +
       phone +
-      '" onblur="fn(this)" disabled/></td>' +
+      '" onblur="disabledInput(this)" disabled/></td>' +
       '<td ondblclick="enabledInput(this)"><input type="text" value="' +
       email +
-      '" onblur="fn(this)" disabled/></td>' +
+      '" onblur="disabledInput(this)" disabled/></td>' +
       '<td><input type="button" value="Deleted" onclick="deleted(this)"/></td>';
     tb.append(tr);
     reset();
