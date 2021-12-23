@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  border-radius: 0%;
+  border: 1px solid black;
+}
+.box {
+  width: 40%;
+  border-radius: 0%;
+  border: 1px solid black;
+  margin: 50px 0;
+}
+.boxChat {
+  width: 100%;
+  height: 300px;
+  border-radius: 0%;
+  border: 1px solid black;
+}
+.boxChat::-webkit-scrollbar {
+  width: 6px;
+  background-color: #9e9393;
+}
+.boxInput {
+  width: 100%;
+  border-radius: 0%;
+  border: 1px solid black;
+}
+.listButton {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+}
+.boxText {
+  width: 100%;
+  display: flex;
+}
+.textarea {
+  width: 70%;
+}
+.send {
+  width: 20%;
+  height: 81px;
+}
+.msg1 {
+  display: flex;
+  justify-content: flex-end;
+}
+.msg2 {
+  display: flex;
+  justify-content: flex-start;
+}
+.left {
+  background-color: #0084ff;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+.right {
+  background-color: #e4e6eb;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+.active {
+  background-color: #000;
+  color: #fff;
+}
+@media screen and (max-width: 1224px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
