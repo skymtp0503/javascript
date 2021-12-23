@@ -57,6 +57,7 @@
   border: 1px solid black;
   max-width: 60%;
   word-wrap: break-word;
+  margin: 5px;
 }
 .right {
   background-color: #e4e6eb;
@@ -64,6 +65,7 @@
   border: 1px solid black;
   max-width: 60%;
   word-wrap: break-word;
+  margin: 5px;
 }
 .active {
   background-color: #000;
