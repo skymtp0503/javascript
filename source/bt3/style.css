@@ -55,11 +55,15 @@
   background-color: #0084ff;
   border-radius: 5px;
   border: 1px solid black;
+  max-width: 60%;
+  word-wrap: break-word;
 }
 .right {
   background-color: #e4e6eb;
   border-radius: 5px;
   border: 1px solid black;
+  max-width: 60%;
+  word-wrap: break-word;
 }
 .active {
   background-color: #000;
