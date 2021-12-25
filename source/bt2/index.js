@@ -11,10 +11,10 @@ const higthLight = (value) => {
     } else if (value > 0 || value <= 6) {
       if (value - 1 == i) listItem[i].style.background = 'yellow';
       else listItem[i].style.background = 'none';
-    } else if (value == 'odd') {
+    } else if (value == 'even') {
       if (i % 2 == 1) listItem[i].style.background = 'yellow';
       else listItem[i].style.background = 'none';
-    } else if (value == 'even') {
+    } else if (value == 'odd') {
       if (i % 2 == 0) listItem[i].style.background = 'yellow';
       else listItem[i].style.background = 'none';
     } else if (value == 'even') {
