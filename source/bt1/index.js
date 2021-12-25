@@ -155,7 +155,7 @@ addImage.onchange = (e) => {
   const fileType = file['type'];
   const imageTypes = ['image/gif', 'image/jpeg', 'image/png'];
   if (!imageTypes.includes(fileType)) {
-    alert("Choose a picture");
+    alert('Choose a picture');
     return;
   }
   const fileReader = new FileReader();
@@ -251,3 +251,4 @@ const showResult = () => {
   birthdayResult.innerText = birthdayInput[2]+'/'+birthdayInput[1]+'/'+ birthdayInput[0];
   avartarReslt.src = avartar;
 };
+
