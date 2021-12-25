@@ -155,6 +155,7 @@ addImage.onchange = (e) => {
   const fileType = file['type'];
   const imageTypes = ['image/gif', 'image/jpeg', 'image/png'];
   if (!imageTypes.includes(fileType)) {
+    alert("Choose a picture");
     return;
   }
   const fileReader = new FileReader();
@@ -243,9 +244,10 @@ const showResult = () => {
   const phoneResult = document.querySelector('#phoneResult');
   const birthdayResult = document.querySelector('#birthdayResult');
   const avartarReslt = document.querySelector('#avartarResult');
+  const birthdayInput= birthday.split('-');
   fullnameResult.innerText = fullname;
   emailResult.innerText = email;
   phoneResult.innerText = phone;
-  birthdayResult.innerText = birthday;
+  birthdayResult.innerText = birthdayInput[2]+'/'+birthdayInput[1]+'/'+ birthdayInput[0];
   avartarReslt.src = avartar;
 };
