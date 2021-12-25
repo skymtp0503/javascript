@@ -59,7 +59,6 @@ const checkPhone = (elementPhone) => {
   const phoneFormat = phone
     .split('-')
     .join('');
-  console.log(phoneFormat)
   if (!isRequired(phone)) {
     showError(elementPhone, 'Phone cannot be blank.');
   } else if (!checkRegex(regexPhone, phoneFormat)) {
@@ -86,7 +85,7 @@ const checkBirth = (elementBirthday) => {
     if ((dateVal >= dd && mmVal >= mm && yyyyVal >= yyyy) || yyyyVal > yyyy) {
       showError(
         elementBirthday,
-        `Your date of birth must be less than the current date: ${today}`
+        `Your date of birth must be less than the current date: ${today}`,
       );
       valid = false;
     } else {
@@ -108,7 +107,7 @@ const checkPassword = (elementPassword) => {
   } else if (!checkRegex(regexPassword, password)) {
     showError(
       elementPassword,
-      'Password must has at least 8 characters: 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character'
+      'Password must has at least 8 characters: 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character',
     );
   } else {
     showSuccess(elementPassword);
@@ -180,10 +179,10 @@ passwordEl.onblur = () => {
 confirmPasswordEl.onblur = () => {
   checkConfirmPassword(passwordEl, confirmPasswordEl);
 };
-addBtn.addEventListener('click', function () {
+addBtn.addEventListener('click', function() {
   add();
 });
-resetBtn.addEventListener('click', function () {
+resetBtn.addEventListener('click', function() {
   reset();
 });
 const add = () => {
