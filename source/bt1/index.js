@@ -10,115 +10,122 @@ const phoneError = document.querySelector('#phone-error');
 const birthdayError = document.querySelector('#birthday-error');
 const passwordError = document.querySelector('#password-error');
 const confirmError = document.querySelector('#confirm-error');
-const form = document.querySelector('#form');
-const checkUsername = (element) => {
+const addBtn = document.querySelector('#add');
+const resetBtn = document.querySelector('#clear');
+const checkUsername = (elementFullname) => {
   let valid = false;
   const regexFullName =
     /[\[\]\:\'\"\:\{\}\`\;\|\<\>\.\?\,\!\@\#\$\%\^\&\*\(\)\/\\\~\-\_\+\=\d]+/g;
   const min = 3;
   const max = 25;
-  const fullname = element.value.trim();
+  const fullname = elementFullname.value.trim();
   if (!isRequired(fullname)) {
-    showError(element, 'Full name cannot be blank.');
+    showError(elementFullname, 'Full name cannot be blank.');
   } else if (checkRegex(regexFullName, fullname)) {
-    showError(element, 'Full name is not valid');
+    showError(elementFullname, 'Full name is not valid');
   } else if (!isBetween(fullname.length, min, max)) {
-    showError(element, 'Full name must be between 3 and 25 chacracter');
+    showError(elementFullname, 'Full name must be between 3 and 25 chacracter');
   } else {
     const fullnameFormat = fullname
       .toLowerCase()
       .split(' ')
       .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
       .join(' ');
-    element.value = fullnameFormat;
+    elementFullname.value = fullnameFormat;
     valid = true;
-    showSuccess(element);
+    showSuccess(elementFullname);
   }
   return valid;
 };
-const checkEmail = () => {
+const checkEmail = (elementEmail) => {
   let valid = false;
   const regexMail =
     /^([a-z]|[A-Z]|[0-9])+((\.?)([a-z]|[A-Z]|[0-9])+)*\@([a-z]|[A-Z]|[0-9])+(\.([a-z]|[A-Z]|[0-9])+)*$/g;
-  const email = emailEl.value.trim();
-  if (!checkRegex(regexMail, email)) {
-    showError(emailEl, 'Email cannot be blank.');
-  } else if (!isEmailValid(email)) {
-    showError(emailEl, 'Email is not valid.');
+  const email = elementEmail.value.trim();
+  if (!isRequired(email)) {
+    showError(elementEmail, 'Email cannot be blank.');
+  } else if (!checkRegex(regexMail, email)) {
+    showError(elementEmail, 'Email is not valid.');
   } else {
-    showSuccess(emailEl);
+    showSuccess(elementEmail);
     valid = true;
   }
   return valid;
 };
-const checkPhone = () => {
+const checkPhone = (elementPhone) => {
   let valid = false;
   const regexPhone = /^[0][0-9]{2}[0-9]{3}[0-9]{4}$/;
-  const phone = phoneEl.value.trim();
+  const phone = elementPhone.value.trim();
+  const phoneFormat = phone
+    .split('-')
+    .join('');
+  console.log(phoneFormat)
   if (!isRequired(phone)) {
-    showError(phoneEl, 'Phone cannot be blank.');
-  } else if (!checkRegex(regexPhone, phone)) {
-    showError(phoneEl, 'Phone is not valid.');
+    showError(elementPhone, 'Phone cannot be blank.');
+  } else if (!checkRegex(regexPhone, phoneFormat)) {
+    showError(elementPhone, 'Phone is not valid.');
   } else {
     valid = true;
-    showSuccess(phoneEl);
+    showSuccess(elementPhone);
   }
   return valid;
 };
-const checkBirth = () => {
+const checkBirth = (elementBirthday) => {
   let valid = false;
   const today = new Date();
   const dd = today.getDate();
   const mm = today.getMonth() + 1;
   const yyyy = today.getFullYear();
-  if (!isRequired(birthdayEl.value)) {
-    showError(birthdayEl, 'Birthday cannot be blank');
+  if (!isRequired(elementBirthday.value)) {
+    showError(elementBirthday, 'Birthday cannot be blank');
   } else {
-    const birthdaySplit = birthdayEl.value.split('-');
+    const birthdaySplit = elementBirthday.value.split('-');
     const dateVal = parseInt(birthdaySplit[2]);
     const mmVal = parseInt(birthdaySplit[1]);
     const yyyyVal = parseInt(birthdaySplit[0]);
     if ((dateVal >= dd && mmVal >= mm && yyyyVal >= yyyy) || yyyyVal > yyyy) {
       showError(
-        birthdayEl,
-        `Your date of birth must be less than the current date: ${today}`,
+        elementBirthday,
+        `Your date of birth must be less than the current date: ${today}`
       );
       valid = false;
     } else {
       valid = true;
-      showSuccess(birthdayEl);
+      showSuccess(elementBirthday);
     }
     return valid;
   }
 };
-const checkPassword = () => {
+const checkPassword = (elementPassword) => {
   let valid = false;
   const regexPassword =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-  const password = passwordEl.value.trim();
+  const password = elementPassword.value.trim();
   if (!isRequired(password)) {
-    showError(passwordEl, 'Password cannot be blank.');
+    showError(elementPassword, 'Password cannot be blank.');
+  } else if (!isBetween(password.length, 8, 30)) {
+    showError(elementPassword, 'Full name must be between 8 and 30 chacracter');
   } else if (!checkRegex(regexPassword, password)) {
     showError(
-      passwordEl,
-      'Password must has at least 8 characters: 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character',
+      elementPassword,
+      'Password must has at least 8 characters: 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character'
     );
   } else {
-    showSuccess(passwordEl);
+    showSuccess(elementPassword);
     valid = true;
   }
   return valid;
 };
-const checkConfirmPassword = () => {
+const checkConfirmPassword = (elementPassword, elementConfirm) => {
   let valid = false;
-  const confirmPassword = confirmPasswordEl.value.trim();
-  const password = passwordEl.value.trim();
+  const confirmPassword = elementConfirm.value.trim();
+  const password = elementPassword.value.trim();
   if (!isRequired(confirmPassword)) {
-    showError(confirmPasswordEl, 'Please enter the password again');
+    showError(elementConfirm, 'Please enter the password again');
   } else if (password !== confirmPassword) {
-    showError(confirmPasswordEl, 'The password does not match');
+    showError(elementConfirm, 'The password does not match');
   } else {
-    showSuccess(confirmPasswordEl);
+    showSuccess(elementConfirm);
     valid = true;
   }
   return valid;
@@ -158,22 +165,28 @@ addImage.onchange = (e) => {
     avatar.setAttribute('src', url);
   };
 };
-fullnameEl.onblur = () => {
-  checkUsername(fullnameEl);
+emailEl.onblur = () => {
+  checkEmail(emailEl);
 };
-emailEl.addEventListener('blur', checkEmail);
-phoneEl.addEventListener('blur', checkPhone);
-birthdayEl.addEventListener('blur', checkBirth);
-passwordEl.addEventListener('blur', checkPassword);
-confirmPasswordEl.addEventListener('blur', checkConfirmPassword);
-form.addEventListener('submit', function(e) {
-  add(e);
+phoneEl.onblur = () => {
+  checkPhone(phoneEl);
+};
+birthdayEl.onblur = () => {
+  checkBirth(birthdayEl);
+};
+passwordEl.onblur = () => {
+  checkPassword(passwordEl);
+};
+confirmPasswordEl.onblur = () => {
+  checkConfirmPassword(passwordEl, confirmPasswordEl);
+};
+addBtn.addEventListener('click', function () {
+  add();
 });
-form.addEventListener('reset', function(e) {
+resetBtn.addEventListener('click', function () {
   reset();
 });
-const add = (e) => {
-  e.preventDefault();
+const add = () => {
   let isValid = false;
   isValid = checkAll();
   if (isValid) {
@@ -181,8 +194,10 @@ const add = (e) => {
   }
 };
 document.onkeyup = (e) => {
-  if (e.keyCode == 16) add(e);
-  if (e.keyCode == 46) reset();
+  const shiftBtn = 16;
+  const deleteBtn = 46;
+  if (e.keyCode == shiftBtn) add(e);
+  if (e.keyCode == deleteBtn) reset();
 };
 const reset = () => {
   resetError();
@@ -190,18 +205,18 @@ const reset = () => {
 };
 const checkAll = () => {
   checkUsername(fullnameEl);
-  checkEmail();
-  checkPhone();
-  checkBirth();
-  checkPassword();
-  checkConfirmPassword();
+  checkEmail(emailEl);
+  checkPhone(phoneEl);
+  checkBirth(birthdayEl);
+  checkPassword(passwordEl);
+  checkConfirmPassword(passwordEl, confirmPasswordEl);
   return (
     checkUsername(fullnameEl) &&
-    checkEmail() &&
-    checkPhone() &&
-    checkBirth() &&
-    checkPassword() &&
-    checkConfirmPassword()
+    checkEmail(emailEl) &&
+    checkPhone(phoneEl) &&
+    checkBirth(birthdayEl) &&
+    checkPassword(passwordEl) &&
+    checkConfirmPassword(passwordEl, confirmPasswordEl)
   );
 };
 const resetError = () => {
@@ -235,4 +250,3 @@ const showResult = () => {
   birthdayResult.innerText = birthday;
   avartarReslt.src = avartar;
 };
-
