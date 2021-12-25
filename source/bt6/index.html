@@ -11,7 +11,7 @@
     <table id="table">
       <thead>
         <tr>
-          <th><input id="checkbox" type="checkbox" value="" disabled/></th>
+          <th><input id="checkbox" type="checkbox" value="" /></th>
           <th>Name</th>
           <th>Phone</th>
           <th>Email</th>
@@ -20,10 +20,10 @@
       </thead>
       <tbody id="tbody">
         <tr>
-          <td><input type="checkbox" value="" disabled/></td>
-          <td><input id="name" class="name" type="text" value="" ondblclick="fn1()"/></td>
-          <td><input id="phone" type="text" value="" /></td>
-          <td><input id="email" type="email" value="" /></td>
+          <td></td>
+          <td><input id="name" class="name" type="text" value=""/></td>
+          <td><input id="phone" type="text" value="" /><span class="error" id="phone-error">&nbsp;</span></td>
+          <td><input id="email" type="email" value="" /><span class="error" id="email-error">&nbsp;</span></td>
           <td><input type="button" value="Deleted" /></td>
         </tr>
       </tbody>
