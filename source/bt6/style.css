@@ -1,0 +1,18 @@
+table, tbody, tr, td, th {
+    border-radius: 0%;
+    border: 1px solid black;
+}
+table {
+    margin: 0 auto;
+}
+.listButton {
+    display: flex;
+    justify-content: center;
+}
+.invalid {
+    border-radius: 0;
+    border: 1px solid red;
+}
+.error{
+    color: red;
+}
