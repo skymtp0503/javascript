@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form class="form" id="form" action='' method="POST">
+        <fieldset>
+            <div class="input">
+                <div class="form-item">
+                    <label class="control-label"  for="fullname">Full name</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Ex: Lê Lâm Trường">
+                    <span class="form-error" id="fullname-error">&nbsp;</span>
+                </div>
+                <div class="form-item">
+                    <label class="control-label"  for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Ex: truongll@gmail.com">
+                    <span class="form-error" id="email-error">&nbsp;</span>
+                </div>
+                <div class="form-item">
+                    <label class="control-label"  for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Ex: 082-852-4954">
+                    <span class="form-error" id="phone-error">&nbsp;</span>
+                </div>
+                <div class="form-item">
+                    <label class="control-label"  for="birthday">Birthday</label>
+                    <input type="date" id="birthday" name="birthday" placeholder="">
+                    <span class="form-error" id="birthday-error">&nbsp;</span>
+                </div>
+                <div class="form-item">
+                    <label class="control-label"  for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="">
+                    <span class="form-error" id="password-error">&nbsp;</span>
+                </div>
+                <div class="form-item">
+                    <label class="control-label"  for="confirmpassword">Confirm Password</label>
+                    <input type="password" id="confirm" name="confirm" placeholder="">
+                    <span class="form-error" id="confirm-error">&nbsp;</span>
+                </div>      
+            </div>
+            <label class="avartar" for="file-upload">
+                <img class="profile-pic" id="profile-pic" src="avatar.png" />
+	            <input class="file-upload" id="file-upload" type="file" accept="image/*" hidden>
+            </label>
+            <div class="button">
+                <input type="button" id="add" value="ADD">
+                <input type="button" id="clear" value="Reset">
+            </div>
+            <div class="form-result">
+                <table class="result">
+                    <tr>
+                        <td>FullName :</td>
+                        <td id="fullnameResult"></td>
+                    </tr>
+                    <tr>
+                        <td>Email :</td>
+                        <td id="emailResult"></td>
+                    </tr>
+                    <tr>
+                        <td>Phone :</td>
+                        <td id="phoneResult"></td>
+                    </tr>
+                    <tr>
+                        <td>Birthday :</td>
+                        <td id=birthdayResult></td>
+                    </tr>
+                </table>
+                <div class="avartar" >
+                    <img class="profile-pic" id="avartarResult" src="avatar.png" />
+                </div>
+            </div>
+        </fieldset>     
+      </form>
+</body>
+<script src="./index.js"></script>
+</html>
